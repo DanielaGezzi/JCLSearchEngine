@@ -67,7 +67,7 @@ $(function(){
 						$('<a/>', {'class':'result_row', 'href':v._source.url, 'target':'_blank'}).append(
 							$('<div/>', {'class':'res_title'}).text( v._source.title ),
 							$('<div/>', {'class':'res_src'}).text( v._source.url ),
-							$('<div/>', {'class':'res_txt'}).text( v._source.content )
+							$('<div/>', {'class':'res_txt'}).text( v.highlight.content[0] )
 						).appendTo( rif );
 						
 					});
@@ -104,7 +104,7 @@ $(function(){
 														$('<a/>', {'class':'result_row', 'href':v._source.url, 'target':'_blank'}).append(
 															$('<div/>', {'class':'res_title'}).text( v._source.title ),
 															$('<div/>', {'class':'res_src'}).text( v._source.url ),
-															$('<div/>', {'class':'res_txt'}).text( v._source.content )
+															$('<div/>', {'class':'res_txt'}).text( v.highlight.content[0] )
 														).appendTo( rif );
 														
 													});

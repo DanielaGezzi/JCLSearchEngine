@@ -40,11 +40,15 @@ public class Searcher {
 		
 		String encoded_query = new String(query.getBytes("UTF-8"), "UTF-8");
 
+		
 		/* A questo punto avvio la ricerca */
 
 		SearchResponse response = client.prepareSearch(indexName)
 				.setSearchType(SearchType.DFS_QUERY_THEN_FETCH)
 				.setQuery(QueryBuilders.multiMatchQuery(encoded_query, "content", "title"))
+				.addHighlightedField("content")
+				.setHighlighterPreTags("<b>")
+				.setHighlighterPostTags("</b>")
 				.setFrom((page-1)*10).setSize(10).setExplain(true)
 				.execute()
 				.actionGet();
