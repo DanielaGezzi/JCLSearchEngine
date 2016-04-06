@@ -52,9 +52,7 @@ public class doSearch extends HttpServlet{
 			SearchFacade facade = new SearchFacade();
 			search_res	= facade.search(query, page);
 			System.out.println(search_res);
-			//String if_wrong = facade.correctMisspelling(query, language);
-			//if( if_wrong != null ) json.put( "misspelling", if_wrong );
-			//facade.addToSuggestions(query);
+
 		}
 		catch( Exception e ){
 			e.printStackTrace();;
