@@ -47,6 +47,8 @@ public class Searcher {
 				.text(query)
 				.analyzer("simple")
 				.highlight("<i>", "</i>")
+				.realWordErrorLikelihood((float) 0.95)
+				.maxErrors((float) 0.5)
 				.gramSize(3);
 
 		SearchResponse response = client.prepareSearch(indexName)

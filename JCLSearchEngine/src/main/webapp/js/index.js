@@ -75,14 +75,14 @@ $(function(){
 					});
 					
 					if( res_data.hits.total > 10 )
-					{
+					{	
 						var pages_num_dom = $('#page_area');
 						var pages_num = Math.ceil( res_data.hits.total / 10 );
 						for( var x = 0; x < pages_num; x++ )
-						{
+						{	
 							pages_num_dom.append(
 								$('<div/>',{'class':('page_num' + ( x == 0 ? ' selected_page' : '' ) ) }).text( x + 1 ).click( function( e )
-								{
+								{	
 									$.ajax({
 										type		: 'POST',
 										url			: '/JCLSearchEngine/doSearch',
@@ -100,7 +100,7 @@ $(function(){
 											
 											$('#res_miss').text('');
 											
-											$.each( res_data.hits.hits, function( k, v )
+											$.each( res_data_d.hits.hits, function( k, v )
 													{	
 														
 														$('<a/>', {'class':'result_row', 'href':v._source.url, 'target':'_blank'}).append(
@@ -132,6 +132,7 @@ $(function(){
 					$('#search_btn').addClass('search_btn_resfound');
 					$('#result_area').addClass('result_area_resfound');
 					$('#res_sum').addClass('res_sum_resfound');
+					$('#page_area').addClass('page_area_resfound');
 
 				}
 				else
