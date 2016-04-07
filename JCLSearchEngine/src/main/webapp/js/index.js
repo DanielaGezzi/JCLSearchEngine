@@ -48,6 +48,8 @@ $(function(){
 			success		: function( res_data, res_textStatus, res_jqXHR )
 			{
 				var rif = $('#result_area').empty();
+				$('#page_area').empty();
+				$('#res_miss').removeClass();
 				$('#res_sum .res_sum_l').eq(0).text( 'Ricerca eseguita in ' + ( res_data.took ) + ' msec' );
 				$('#res_sum .res_sum_r').eq(0).text( res_data.hits.total ? 'trovat' + ( res_data.hits.total > 1 ? 'i' : 'o' ) + ' ' + res_data.hits.total + ' element' + ( res_data.hits.total > 1 ? 'i' : 'o' ) : '' );
 				
@@ -56,7 +58,6 @@ $(function(){
 					$('#res_miss').addClass('res_miss_resfound');
 					$('#res_miss').text('Forse intendevi: ' + res_data.suggest.did_you_mean[0].options[0].text + ' ?').click( function( e ){
 						$('#search_form_input_homepage').val( res_data.suggest.did_you_mean[0].options[0].text );
-						$('#res_miss').removeClass();
 						doSearch( res_data.suggest.did_you_mean[0].options[0].text );
 					});
 				}
