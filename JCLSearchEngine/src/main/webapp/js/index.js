@@ -51,13 +51,15 @@ $(function(){
 				$('#res_sum .res_sum_l').eq(0).text( 'Ricerca eseguita in ' + ( res_data.took ) + ' msec' );
 				$('#res_sum .res_sum_r').eq(0).text( res_data.hits.total ? 'trovat' + ( res_data.hits.total > 1 ? 'i' : 'o' ) + ' ' + res_data.hits.total + ' element' + ( res_data.hits.total > 1 ? 'i' : 'o' ) : '' );
 				
-				//if( res_data.suggest )
-				//{
-				//	$('#res_miss').text('Forse intendevi: ' + res_data.suggest.etc + ' ?').click( function( e ){
-				//		$('#search_form_input_homepage').val( res_data.suggest.etc );
-				//		doSearch( res_data.suggest.etc );
-				//	});
-				//}
+				if( res_data.suggest.did_you_mean[0].options[0] )
+				{	
+					$('#res_miss').addClass('res_miss_resfound');
+					$('#res_miss').text('Forse intendevi: ' + res_data.suggest.did_you_mean[0].options[0].text + ' ?').click( function( e ){
+						$('#search_form_input_homepage').val( res_data.suggest.did_you_mean[0].options[0].text );
+						$('#res_miss').removeClass();
+						doSearch( res_data.suggest.did_you_mean[0].options[0].text );
+					});
+				}
 				
 				if( res_data.hits.total && res_data.hits.hits )
 				{	
@@ -67,7 +69,7 @@ $(function(){
 						$('<a/>', {'class':'result_row', 'href':v._source.url, 'target':'_blank'}).append(
 							$('<div/>', {'class':'res_title'}).text( v._source.title ),
 							$('<div/>', {'class':'res_src'}).text( v._source.url ),
-							$('<div/>', {'class':'res_txt'}).text( v.highlight.content[0] )
+							$('<div/>', {'class':'res_txt'}).html( '[...]'+ v.highlight.content[0] )
 						).appendTo( rif );
 						
 					});
@@ -96,7 +98,7 @@ $(function(){
 											
 											$('#res_sum .res_sum_l').eq(0).text( 'Ricerca eseguita in ' + ( res_data.took ) + ' msec' );
 											
-											//$('#res_miss').text('');
+											$('#res_miss').text('');
 											
 											$.each( res_data.hits.hits, function( k, v )
 													{	
@@ -104,7 +106,7 @@ $(function(){
 														$('<a/>', {'class':'result_row', 'href':v._source.url, 'target':'_blank'}).append(
 															$('<div/>', {'class':'res_title'}).text( v._source.title ),
 															$('<div/>', {'class':'res_src'}).text( v._source.url ),
-															$('<div/>', {'class':'res_txt'}).text( v.highlight.content[0] )
+															$('<div/>', {'class':'res_txt'}).html( v.highlight.content[0] )
 														).appendTo( rif );
 														
 													});
