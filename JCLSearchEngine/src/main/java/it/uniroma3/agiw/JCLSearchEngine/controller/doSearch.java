@@ -12,6 +12,9 @@ import org.elasticsearch.action.search.SearchResponse;
 
 /**
  * Servlet implementation class doSearch
+ * 
+ * @author JavaComeLava
+ * 
  */
 
 @WebServlet("/doSearch")
@@ -39,7 +42,7 @@ public class doSearch extends HttpServlet{
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String query			  	= request.getParameter("query");
-		Integer page			=Integer.parseInt( request.getParameter("page") );
+		Integer page				= Integer.parseInt( request.getParameter("page") );
 		SearchResponse search_res 	= null;
 		
 		/* Imposto la pagina di default ad 1 */
@@ -52,9 +55,7 @@ public class doSearch extends HttpServlet{
 			SearchFacade facade = new SearchFacade();
 			search_res	= facade.search(query, page);
 			System.out.println(search_res);
-			//String if_wrong = facade.correctMisspelling(query, language);
-			//if( if_wrong != null ) json.put( "misspelling", if_wrong );
-			//facade.addToSuggestions(query);
+			
 		}
 		catch( Exception e ){
 			e.printStackTrace();;

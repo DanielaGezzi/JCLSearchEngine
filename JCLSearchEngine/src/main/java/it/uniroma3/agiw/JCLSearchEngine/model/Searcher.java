@@ -10,9 +10,14 @@ import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.search.suggest.phrase.DirectCandidateGenerator;
 import org.elasticsearch.search.suggest.phrase.PhraseSuggestionBuilder;
 
+/**
+ * Classe per la ricerca nell'indice
+ * 
+ * @author JavaComeLava
+ *
+ */
 public class Searcher {
 	private String indexName = "agiw";
 	private String clusterName = "elasticsearch";
@@ -44,7 +49,7 @@ public class Searcher {
 
 		PhraseSuggestionBuilder suggestion = new PhraseSuggestionBuilder("did_you_mean")
 				.field("content")
-				.text(query)
+				.text(encoded_query)
 				.analyzer("simple")
 				.highlight("<i>", "</i>")
 				.realWordErrorLikelihood((float) 0.95)
