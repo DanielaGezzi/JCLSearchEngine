@@ -163,7 +163,7 @@ html, body
 }
 #search_btn:hover
 {
-	background-color:#E31B37;
+	background-color:#D4746A;
 	color:#FFF;
 }
 #search_btn i
@@ -259,8 +259,8 @@ html, body
 .res_title
 {
 	font-size: 1.2em;
-	color: #E31B37;
-	border-bottom: .1px solid #E31B37;
+	color: #e7304b;
+	border-bottom: .1px solid #e7304b;
 	line-height: 1.4em;
 }
 .res_src
@@ -328,8 +328,8 @@ html, body
 }
 .selected_page, .page_num:hover
 {
-	background-color:#E31B37;
+	background-color:#D4746A;
 	color:#FFF;
-	border: 1px solid #E31B37;
+	border: 1px solid #D4746A;
 }
 /************/
