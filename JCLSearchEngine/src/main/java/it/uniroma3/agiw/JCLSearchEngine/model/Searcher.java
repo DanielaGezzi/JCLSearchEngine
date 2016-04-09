@@ -19,7 +19,7 @@ import org.elasticsearch.search.suggest.phrase.PhraseSuggestionBuilder;
  *
  */
 public class Searcher {
-	private String indexName = "agiw";
+	private String indexName = "agiw2";
 	private String clusterName = "elasticsearch";
 	
 	public Searcher(){
@@ -58,7 +58,10 @@ public class Searcher {
 
 		SearchResponse response = client.prepareSearch(indexName)
 				.setSearchType(SearchType.DFS_QUERY_THEN_FETCH)
-				.setQuery(QueryBuilders.multiMatchQuery(encoded_query, "content", "title"))
+				.setQuery(QueryBuilders
+						.multiMatchQuery(encoded_query, "content", "title")
+						.minimumShouldMatch("80%")
+						.tieBreaker((float) 1.0))
 				.addHighlightedField("content")
 				.setHighlighterOrder("score")
 				.setHighlighterPreTags("<b>")
