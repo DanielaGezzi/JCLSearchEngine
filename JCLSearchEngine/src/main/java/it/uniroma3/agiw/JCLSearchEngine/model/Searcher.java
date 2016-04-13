@@ -59,9 +59,10 @@ public class Searcher {
 		SearchResponse response = client.prepareSearch(indexName)
 				.setSearchType(SearchType.DFS_QUERY_THEN_FETCH)
 				.setQuery(QueryBuilders
-						.multiMatchQuery(encoded_query, "content", "title")
+						.multiMatchQuery(encoded_query, "content", "title", "url")
 						.minimumShouldMatch("80%")
-						.tieBreaker((float) 1.0))
+						.tieBreaker((float) 1.0)
+						.analyzer("standard"))
 				.addHighlightedField("content")
 				.setHighlighterOrder("score")
 				.setHighlighterPreTags("<b>")
