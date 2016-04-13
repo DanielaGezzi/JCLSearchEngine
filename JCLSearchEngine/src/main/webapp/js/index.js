@@ -52,6 +52,7 @@ $(function(){
 				$('#res_miss').removeClass();
 				
 				$('#res_sum .res_sum_l').eq(0).text( 'Ricerca eseguita in ' + ( r_data.took ) + ' msec' );
+				//debugger;
 				$('#res_sum .res_sum_r').eq(0).text( r_data.hits.total ? 'trovat' + ( r_data.hits.total > 1 ? 'i' : 'o' ) + ' ' + r_data.hits.total + ' element' + ( r_data.hits.total > 1 ? 'i' : 'o' ) : '' );
 				
 				if( r_data.suggest.did_you_mean[0].options[0] )
@@ -64,7 +65,7 @@ $(function(){
 				}
 				
 				if( r_data.hits.total && r_data.hits.hits )
-				{	
+				{
 					$.each( r_data.hits.hits, function( k, v )
 					{	
 						
@@ -125,22 +126,22 @@ $(function(){
 							);
 						}
 					}
-					
-					$('#centered').addClass('centered_res');
-					$('#action_area').addClass('action_area_res');
-					$('#logo_wrap').addClass('logo_wrap_res');
-					$('#logo_txt').addClass('logo_txt_res');
-					$('#search_form_homepage').addClass('search_form_homepage_res');
-					$('#search_btn').addClass('search_btn_res');
-					$('#result_area').addClass('result_area_res');
-					$('#res_sum').addClass('res_sum_res');
-					$('#page_area').addClass('page_area_res');
 
 				}
 				else
 				{
 					rif.append( $('<div/>', {'class':'res_empty'}).html( '<p>La ricerca di - ' + toSearch + ' - non ha prodotto risultati in nessun documento.</p>' ) );
 				}
+				
+				$('#centered').addClass('centered_res');
+				$('#action_area').addClass('action_area_res');
+				$('#logo_wrap').addClass('logo_wrap_res');
+				$('#logo_txt').addClass('logo_txt_res');
+				$('#search_form_homepage').addClass('search_form_homepage_res');
+				$('#search_btn').addClass('search_btn_res');
+				$('#result_area').addClass('result_area_res');
+				$('#res_sum').addClass('res_sum_res');
+				$('#page_area').addClass('page_area_res');
 			},
 			error		: function( jqXHR, textStatus, errorThrown  )
 			{
