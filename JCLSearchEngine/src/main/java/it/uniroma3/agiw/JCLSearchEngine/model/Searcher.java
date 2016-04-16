@@ -19,7 +19,7 @@ import org.elasticsearch.search.suggest.phrase.PhraseSuggestionBuilder;
  *
  */
 public class Searcher {
-	private String indexName = "agiw2";
+	private String indexName = "agiw";
 	private String clusterName = "elasticsearch";
 	
 	public Searcher(){
@@ -48,7 +48,7 @@ public class Searcher {
 		String encoded_query = new String(query.getBytes("UTF-8"), "UTF-8");
 
 		PhraseSuggestionBuilder suggestion = new PhraseSuggestionBuilder("did_you_mean")
-				.field("content")
+				.field("content.suggest")
 				.text(encoded_query)
 				.analyzer("simple")
 				.highlight("<i>", "</i>")
